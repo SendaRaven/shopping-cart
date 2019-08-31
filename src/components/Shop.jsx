@@ -29,7 +29,7 @@ export default class Shop extends Component {
         return (
             <div className="h-50 border-bottom" >
                 <h2>Shop</h2>
-                <ul className="h-100 d-flex flex-column justify-content-around">
+                <ul className="h-75 d-flex flex-column justify-content-around">
                     {this.shopData.map((item, id) => (
 
 
