@@ -35,7 +35,7 @@ export default class Shop extends Component {
 
                         <li key={id} className="d-flex flex-column justify-content-between">
                             <div>{item.title}|${item.price}|x{item.inventory}</div>
-                            <button/*  onClick={} */ className="min-w-25 border border-secondary rounded ">Add to cart{}</button>
+                            <button/*  onClick={} */ className="w-25 border border-secondary rounded ">Add to cart{}</button>
                         </li>)
                     )}
                 </ul>
