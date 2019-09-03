@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {removeAll, removeOne, checkOut} from "./redux/action";
+import CartItem from './CartItem';
+import CheckOut from './CheckOut';
 
 class ShoppingCart extends Component {
 
@@ -10,15 +12,13 @@ class ShoppingCart extends Component {
             <div className="h-25">
                 <h2>ShoppingCart</h2>
                 <ul className="h-75 d-flex flex-column justify-content-around unstyled">
-                    {this.props.shoppingCartData.shoppingCartItems.map((item, id) =>
-                        <li key={id}>
-                            <div>{item.title}|${item.price}|x{item.count}</div>
-                            <input type="button" value="Remove one" className="w-25 border border-secondary rounded " onClick={this.props.removeOne}/> <input type="button" value="Remove all" className="w-25 border border-secondary rounded" onClick={this.props.removeAll}/>
-                        </li>
+                    {this.props.shoppingCartData.shoppingCartItems.map((item) =>
+                    
+                       <CartItem key={item.id} item={item} removeOne={this.props.removeOne} removeAll={this.props.removeAll}/>
                     )}
                 </ul>
-                <h3>Total ${this.props.shoppingCartData.shoppingCartItems.reduce((acc, cur) => acc + cur.price * cur.count, 0)}</h3>
-                <input type="button" className="border rounded border-secondary" onClick={this.props.checkOut} value="Checkout" />
+                <CheckOut shoppingCartData={this.props.shoppingCartData} checkOut={this.props.checkOut}/>
+               
             </div>
         )
     }
@@ -28,10 +28,10 @@ const mapStateToProps = (state) => ({
     shoppingCartData: state.shoppingCartData,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-removeOne: () => dispatch(removeOne()),
-removeAll: () => dispatch(removeAll()),
-checkOut: () => dispatch(checkOut())
-})
+const mapDispatchToProps = {
+removeOne,
+removeAll,
+checkOut
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

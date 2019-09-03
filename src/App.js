@@ -5,7 +5,7 @@ import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
-    <div className="border rounded w-50 vh-100" >
+    <div className="border rounded vh-100" >
       <Shop />
       <ShoppingCart />
     </div>

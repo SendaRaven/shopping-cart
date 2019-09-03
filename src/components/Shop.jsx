@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addToCart } from "./redux/action";
+import ShopProduct from './ShopProduct';
 
 
 
 
- class Shop extends Component {
+class Shop extends Component {
 
     // shopData = [
     //     {
@@ -33,13 +34,8 @@ import { addToCart } from "./redux/action";
             <div className="h-50 border-bottom" >
                 <h2>Shop</h2>
                 <ul className="h-75 d-flex flex-column justify-content-around">
-                    {this.props.shopData.shopInventory.map((item, id) => (
-
-
-                        <li key={id} className="d-flex flex-column justify-content-between">
-                            <div>{item.title}|${item.price}|x{item.inventory}</div>
-                            <input type="button" onClick={this.props.addToCart} className="w-auto border border-secondary rounded " value={this.props.shopData.availableStatus}/>
-                        </li>)
+                    {this.props.shopData.shopInventory.map((item) =>
+                        <ShopProduct item={item} key={item.id} addToCart={this.props.addToCart} />
                     )}
                 </ul>
             </div>
@@ -48,17 +44,17 @@ import { addToCart } from "./redux/action";
 }
 
 const mapStateToProps = (state) => ({
-shopData : state.shopData,
+    shopData: state.shopData,
 
-// id: state.id,
-// title: state.title,
-// price: state.price,
-// inventory: state.inventory
+    // id: state.id,
+    // title: state.title,
+    // price: state.price,
+    // inventory: state.inventory
 
 });
 
-const mapDispatchToProps = (dispatch) => ({
-addToCart: () => dispatch(addToCart())
-})
+const mapDispatchToProps = {
+    addToCart
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop)
